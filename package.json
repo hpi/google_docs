@@ -1,0 +1,19 @@
+{
+  "name": "@qnzl/google_docs",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "vercel dev --listen 3003"
+  },
+  "author": "Madeline Cameron <maddie@qnzl.co>",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "@qnzl/auth": "^2.0.0",
+    "googleapis": "^123.0.0",
+    "jose": "^1.17.2",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.28",
+    "node-fetch": "^2.6.0"
+  },
+  "description": ""
+}
