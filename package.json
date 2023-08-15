@@ -1,5 +1,5 @@
 {
-  "name": "@qnzl/google_docs",
+  "name": "@hpi/google_docs",
   "version": "1.0.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

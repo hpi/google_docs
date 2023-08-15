@@ -2,3 +2,7 @@
 .now/
 now.json
 node_modules/
+.vercel
+__pycache__
+google_docs_export.egg-info
+.eggs

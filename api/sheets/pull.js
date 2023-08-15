@@ -69,7 +69,7 @@ const toCapitalCase = (str) => {
 
 module.exports = (req, res) => {
   const { sheetId } = req.body
-  return authCheck(`watchers.googleSheets.${req.body.sheetId}`)(req, res, handler);
-};
 
+  return handler(req, res)
+}
 

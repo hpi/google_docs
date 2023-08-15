@@ -9,5 +9,4 @@ const handler = async (req, res) => {
 }
 
 module.exports = (req, res) => {
-  return authCheck(CLAIMS.withings.dump)(req, res, handler)
 }
