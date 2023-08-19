@@ -1,35 +1,29 @@
+
 const authCheck = require(`../_lib/auth`);
 const moment = require(`moment-timezone`);
 const { google } = require('googleapis');
 const fetch = require(`node-fetch`);
+const fs = require('fs');
+const path = require('path');
 
-const {
-  GOOGLE_CLIENT_ID,
-  GOOGLE_CLIENT_SECRET,
-  GOOGLE_REDIRECT_URL,
-} = process.env
+const GOOGLE_APPLICATION_CREDENTIALS = 'google-secret.json';
 
 const handler = async (req, res) => {
   let data;
   try {
-    const client = new google.auth.OAuth2(
-      GOOGLE_CLIENT_ID,
-      GOOGLE_CLIENT_SECRET,
-      GOOGLE_REDIRECT_URL,
-    )
+    const auth = new google.auth.GoogleAuth({
+      keyFile: path.join(__dirname, '..', '..', GOOGLE_APPLICATION_CREDENTIALS),
+      scopes: 'https://www.googleapis.com/auth/spreadsheets',
+    });
 
-    const access_token = req.headers[`access-token`]
-
-    client.setCredentials({
-      access_token,
-    })
+    const client = await auth.getClient();
 
     // Create a new instance of the Google Sheets API client
     const sheets = google.sheets({ version: 'v4', auth: client });
 
     // Read data from the specified Google Sheets spreadsheet and sheet
     const response = await sheets.spreadsheets.values.get({
-      spreadsheetId: req.body.sheetId,
+      spreadsheetId: req.query.sheetId,
       range: 'A1:ZZ1000',
     });
 
@@ -68,8 +62,5 @@ const toCapitalCase = (str) => {
 }
 
 module.exports = (req, res) => {
-  const { sheetId } = req.body
-
   return handler(req, res)
 }
-
